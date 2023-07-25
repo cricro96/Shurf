@@ -10,7 +10,7 @@ export class HomePage implements OnInit {
 
 //  usersStories = [
  //  {
- //    id: '1',
+ //    id: '12',
  //    userProfilePic: '../../../assets/images/users/user1.png',
  //    storySeen: false,
  //    userName: 'Shree',
