@@ -1,0 +1,90 @@
+<ion-header mode="ios" [translucent]="false">
+  <ion-toolbar
+    class="ion-no-padding"
+    color="whiteColor"
+    style="box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15)"
+  >
+    <div style="margin: 15px 20px; background-color: var(--whiteColor)">
+      <ion-text class="blackColor20SemiBold"> Notifications </ion-text>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div (click)="goTo('follow-requests')" class="rowAlignCenter margin20" style="margin-bottom: 15px;">
+    <div style="position: relative">
+      <ion-img
+        src="../../../assets/images/users/user27.png"
+        style="
+          width: 60px;
+          height: 60px;
+          border-radius: 30px;
+          object-fit: cover;
+          overflow: hidden;
+        "
+      >
+      </ion-img>
+      <div
+        class="center"
+        style="
+          width: 30px;
+          height: 30px;
+          border-radius: 15px;
+          background-color: var(--primaryColor);
+          position: absolute;
+          bottom: -10px;
+          right: -5px;
+          overflow: hidden;
+        "
+      >
+        <ion-text
+          class="whiteColor14Bold ellipseText"
+          style="-webkit-line-clamp: 1"
+        >
+          255
+        </ion-text>
+      </div>
+    </div>
+    <div class="column" style="margin-left: 18px">
+      <ion-text class="blackColor18SemiBold"> Follow Request </ion-text>
+      <ion-text class="grayColor14Regular">
+        Approve or ignore requests
+      </ion-text>
+    </div>
+  </div>
+
+  <div style="margin-bottom: 40px;">
+    <div *ngIf="notificationsList.length>0">
+      <div
+        *ngFor="let item of notificationsList; let i = index;"
+        style="background-color: var(--redColor);"
+      >
+        <app-swipe-item [noti]="item" (delete)="removeNotification(item.id)">
+        </app-swipe-item>
+      </div>
+    </div>
+  </div>
+
+  <ion-toast
+    [isOpen]="isToastOpen"
+    message="Notification Dismissed!"
+    [duration]="2000"
+    (didDismiss)="isToastOpen=false"
+    class="whiteColor14Medium"
+  ></ion-toast>
+
+  <div
+    class="center column"
+    style="height: 85%;"
+    *ngIf="notificationsList.length===0"
+  >
+    <ion-icon
+      name="notifications-off"
+      color="lightGrayColor"
+      style="font-size: 40px"
+    ></ion-icon>
+    <ion-text class="lightGrayColor16SemiBold" style="margin-top: 10px">
+      No any notifications
+    </ion-text>
+  </div>
+</ion-content>
